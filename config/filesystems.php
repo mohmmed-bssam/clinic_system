@@ -46,6 +46,14 @@ return [
             'throw' => false,
             'report' => false,
         ],
+        'custom' => [
+            'driver' => 'local',
+            'root' => public_path(''),
+            'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/public',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
 
         's3' => [
             'driver' => 's3',

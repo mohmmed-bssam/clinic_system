@@ -5,7 +5,7 @@ use App\Models\Doctor;
 use App\Models\Media;
 use App\Models\Service;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 it('defines the department relationships', function () {
     $department = new Department;
@@ -17,6 +17,6 @@ it('defines the department relationships', function () {
         ->toBeInstanceOf(HasMany::class)
         ->and($department->services()->getRelated())->toBeInstanceOf(Service::class)
         ->and($department->media())
-        ->toBeInstanceOf(MorphMany::class)
+        ->toBeInstanceOf(MorphOne::class)
         ->and($department->media()->getRelated())->toBeInstanceOf(Media::class);
 });

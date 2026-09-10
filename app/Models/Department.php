@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Department extends Model
 {
@@ -20,8 +20,8 @@ class Department extends Model
         return $this->hasMany(Service::class);
     }
 
-    public function media()
+    public function media(): MorphOne
     {
-        return $this->morphone(Media::class, 'mediable');
+        return $this->morphOne(Media::class, 'mediable');
     }
 }

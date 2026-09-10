@@ -15,6 +15,8 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
+        @flasher_render
+
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 

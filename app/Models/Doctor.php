@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Doctor extends Model
 {
@@ -15,8 +15,8 @@ class Doctor extends Model
         return $this->belongsTo(Department::class);
     }
 
-    public function media(): MorphMany
+    public function media(): MorphOne
     {
-        return $this->morphMany(Media::class, 'mediable');
+        return $this->morphOne(Media::class, 'mediable');
     }
 }

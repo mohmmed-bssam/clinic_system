@@ -16,7 +16,7 @@ return new class extends Migration
                 'admin',
                 'doctor',
                 'patient',
-            ])->default('patient');
+            ])->after('email')->default('patient');
         });
     }
 
