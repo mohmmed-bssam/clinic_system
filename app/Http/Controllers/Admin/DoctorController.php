@@ -49,6 +49,7 @@ class DoctorController extends Controller
             'status' => ['sometimes', 'boolean'],
             'image' => ['required', 'image', 'max:2048'],
         ]);
+        $data['status'] = $request->boolean('status');
 
         $image = $data['image'];
         unset($data['image']);
@@ -104,6 +105,7 @@ class DoctorController extends Controller
             'status' => ['sometimes', 'boolean'],
             'image' => ['nullable', 'image', 'max:2048'],
         ]);
+        $data['status'] = $request->boolean('status');
 
         unset($data['image']);
 
@@ -133,7 +135,7 @@ class DoctorController extends Controller
             }
         }
 
-        flash()->success('Doctor updated successfully');
+        flash()->info('Doctor updated successfully');
 
         return Redirect::route('admin.doctors.index');
     }
@@ -151,7 +153,7 @@ class DoctorController extends Controller
         }
 
         $doctor->delete();
-        flash()->success('Doctor deleted successfully');
+        flash()->warning('Doctor deleted successfully');
 
         return Redirect::route('admin.doctors.index');
     }

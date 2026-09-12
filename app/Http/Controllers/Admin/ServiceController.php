@@ -48,6 +48,7 @@ class ServiceController extends Controller
             'status' => ['sometimes', 'boolean'],
             'image' => ['required', 'image', 'max:2048'],
         ]);
+        $data['status'] = $request->boolean('status');
 
         $image = $data['image'];
         unset($data['image']);
@@ -102,6 +103,7 @@ class ServiceController extends Controller
             'status' => ['sometimes', 'boolean'],
             'image' => ['nullable', 'image', 'max:2048'],
         ]);
+        $data['status'] = $request->boolean('status');
 
         unset($data['image']);
 
@@ -131,7 +133,7 @@ class ServiceController extends Controller
             }
         }
 
-        flash()->success('Service updated successfully');
+        flash()->info('Service updated successfully');
 
         return Redirect::route('admin.services.index');
     }
@@ -149,7 +151,7 @@ class ServiceController extends Controller
         }
 
         $service->delete();
-        flash()->success('Service deleted successfully');
+        flash()->warning('Service deleted successfully');
 
         return Redirect::route('admin.services.index');
     }

@@ -1,12 +1,17 @@
-@include('admin.partials.crud-form-page', [
-    'title' => 'Edit Department',
-    'subtitle' => 'Update department information.',
-    'formView' => 'admin.partials.entity-form',
-    'formData' => [
-        'action' => route('admin.departments.update', $department),
-        'method' => 'PUT',
-        'cancel' => route('admin.departments.index'),
-        'entityType' => 'department',
-        'entity' => $department,
-    ],
-])
+<x-admin-layout>
+    @include('admin.partials.page-header', [
+        'title' => 'Edit Department',
+        'subtitle' => 'Update department information.',
+    ])
+
+    <div class="card">
+        <div class="p-4">
+            @include('admin.departments._form', [
+                'action' => route('admin.departments.update', $department),
+                'method' => 'PUT',
+                'cancel' => route('admin.departments.index'),
+                'department' => $department,
+            ])
+        </div>
+    </div>
+</x-admin-layout>

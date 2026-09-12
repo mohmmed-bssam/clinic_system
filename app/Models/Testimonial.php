@@ -3,14 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Testimonial extends Model
 {
     protected $guarded = [];
 
-    public function media(): MorphMany
+    public function media()
     {
-        return $this->morphMany(Media::class, 'mediable');
+        return $this->morphOne(Media::class, 'mediable');
     }
 }

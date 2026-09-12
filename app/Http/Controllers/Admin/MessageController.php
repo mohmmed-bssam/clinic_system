@@ -72,7 +72,7 @@ class MessageController extends Controller
     public function destroy(Message $message): RedirectResponse
     {
         $message->delete();
-        flash()->success('Message deleted successfully');
+        flash()->warning('Message deleted successfully');
 
         return Redirect::route('admin.messages.index');
     }

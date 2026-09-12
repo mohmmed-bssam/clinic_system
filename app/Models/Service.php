@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Service extends Model
 {
@@ -15,8 +14,8 @@ class Service extends Model
         return $this->belongsTo(Department::class);
     }
 
-    public function media(): MorphMany
+    public function media()
     {
-        return $this->morphMany(Media::class, 'mediable');
+        return $this->morphone(Media::class, 'mediable');
     }
 }

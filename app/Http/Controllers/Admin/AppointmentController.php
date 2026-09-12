@@ -68,7 +68,7 @@ class AppointmentController extends Controller
         ]);
 
         $appointment->update($data);
-        flash()->success('Appointment updated successfully');
+        flash()->info('Appointment updated successfully');
 
         return Redirect::route('admin.appointments.show', $appointment);
     }

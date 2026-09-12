@@ -45,6 +45,7 @@ class TestimonialController extends Controller
             'sort_order' => ['sometimes', 'integer', 'min:0'],
             'image' => ['required', 'image', 'max:2048'],
         ]);
+        $data['status'] = $request->boolean('status');
 
         $image = $data['image'];
         unset($data['image']);
@@ -95,6 +96,7 @@ class TestimonialController extends Controller
             'sort_order' => ['sometimes', 'integer', 'min:0'],
             'image' => ['nullable', 'image', 'max:2048'],
         ]);
+        $data['status'] = $request->boolean('status');
 
         unset($data['image']);
 
@@ -124,7 +126,7 @@ class TestimonialController extends Controller
             }
         }
 
-        flash()->success('Testimonial updated successfully');
+        flash()->info('Testimonial updated successfully');
 
         return Redirect::route('admin.testimonials.index');
     }
@@ -142,7 +144,7 @@ class TestimonialController extends Controller
         }
 
         $testimonial->delete();
-        flash()->success('Testimonial deleted successfully');
+        flash()->warning('Testimonial deleted successfully');
 
         return Redirect::route('admin.testimonials.index');
     }

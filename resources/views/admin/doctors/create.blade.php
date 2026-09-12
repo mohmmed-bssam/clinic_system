@@ -1,11 +1,16 @@
-@include('admin.partials.crud-form-page', [
-    'title' => 'New Doctor',
-    'subtitle' => 'Add a doctor to your team.',
-    'formView' => 'admin.partials.entity-form',
-    'formData' => [
-        'action' => route('admin.doctors.store'),
-        'cancel' => route('admin.doctors.index'),
-        'entityType' => 'doctor',
-        'departments' => $departments,
-    ],
-])
+<x-admin-layout>
+    @include('admin.partials.page-header', [
+        'title' => 'New Doctor',
+        'subtitle' => 'Add a doctor to your team.',
+    ])
+
+    <div class="card">
+        <div class="p-4">
+            @include('admin.doctors._form', [
+                'action' => route('admin.doctors.store'),
+                'cancel' => route('admin.doctors.index'),
+                'departments' => $departments,
+            ])
+        </div>
+    </div>
+</x-admin-layout>

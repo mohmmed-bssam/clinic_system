@@ -40,6 +40,7 @@ class FaqController extends Controller
             'status' => ['sometimes', 'boolean'],
             'sort_order' => ['sometimes', 'integer', 'min:0'],
         ]);
+        $data['status'] = $request->boolean('status');
 
         Faq::create($data);
         flash()->success('FAQ created successfully');
@@ -74,9 +75,10 @@ class FaqController extends Controller
             'status' => ['sometimes', 'boolean'],
             'sort_order' => ['sometimes', 'integer', 'min:0'],
         ]);
+        $data['status'] = $request->boolean('status');
 
         $faq->update($data);
-        flash()->success('FAQ updated successfully');
+        flash()->info('FAQ updated successfully');
 
         return Redirect::route('admin.faqs.index');
     }
@@ -87,7 +89,7 @@ class FaqController extends Controller
     public function destroy(Faq $faq): RedirectResponse
     {
         $faq->delete();
-        flash()->success('FAQ deleted successfully');
+        flash()->warning('FAQ deleted successfully');
 
         return Redirect::route('admin.faqs.index');
     }

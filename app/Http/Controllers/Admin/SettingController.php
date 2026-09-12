@@ -73,7 +73,7 @@ class SettingController extends Controller
         ]);
 
         $setting->update($data);
-        flash()->success('Setting updated successfully');
+        flash()->info('Setting updated successfully');
 
         return Redirect::route('admin.settings.index');
     }

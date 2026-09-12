@@ -46,6 +46,7 @@ class DepartmentController extends Controller
             'status' => ['sometimes', 'boolean'],
             'image' => ['required', 'image', 'max:2048'],
         ]);
+        $data['status'] = $request->boolean('status');
 
         $image = $data['image'];
         unset($data['image']);
@@ -96,6 +97,7 @@ class DepartmentController extends Controller
             'status' => ['sometimes', 'boolean'],
             'image' => ['nullable', 'image', 'max:2048'],
         ]);
+        $data['status'] = $request->boolean('status');
 
         unset($data['image']);
 
@@ -125,7 +127,7 @@ class DepartmentController extends Controller
             }
         }
 
-        flash()->success('Department updated successfully');
+        flash()->info('Department updated successfully');
 
         return Redirect::route('admin.departments.index');
     }
@@ -143,7 +145,7 @@ class DepartmentController extends Controller
         }
 
         $department->delete();
-        flash()->success('Department deleted successfully');
+        flash()->warning('Department deleted successfully');
 
         return Redirect::route('admin.departments.index');
     }

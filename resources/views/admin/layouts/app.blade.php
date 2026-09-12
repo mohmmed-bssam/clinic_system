@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/libs/apexcharts/apexcharts.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/libs/flatpickr/flatpickr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/flasher/flasher.min.css') }}">
     @stack('styles')
 </head>
 
@@ -34,8 +35,8 @@
         </footer>
     </div>
 
-    @flasher_render
     <script src="{{ asset('admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    @flasher_render
     <script src="{{ asset('admin/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('admin/assets/libs/flatpickr/flatpickr.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
