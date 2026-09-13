@@ -7,23 +7,25 @@
         <button class="sidebar-toggle-btn me-2" id="sidebar-toggle" aria-label="Toggle Navigation">
             <i class="bi bi-list"></i>
         </button>
-        <div class="dropdown ms-2">
-            <button class="btn-quick-action dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                <i class="bi bi-plus-lg"></i><span>Create</span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-quick-action">
-                <li class="dropdown-header">Quick Actions</li>
-                <li><a class="dropdown-item" href="{{ route('admin.departments.create') }}"><i
-                            class="bi bi-diagram-3"></i> New Department</a></li>
-                <li><a class="dropdown-item" href="{{ route('admin.services.create') }}"><i
-                            class="bi bi-heart-pulse"></i> New Service</a></li>
-                <li><a class="dropdown-item" href="{{ route('admin.doctors.create') }}"><i
-                            class="bi bi-person-plus"></i> New Doctor</a></li>
-                <li><a class="dropdown-item" href="{{ route('admin.faqs.create') }}"><i
-                            class="bi bi-question-circle"></i> New FAQ</a></li>
-            </ul>
-        </div>
+        @if (auth()->user()->role === 'admin')
+            <div class="dropdown ms-2">
+                <button class="btn-quick-action dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <i class="bi bi-plus-lg"></i><span>Create</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-quick-action">
+                    <li class="dropdown-header">Quick Actions</li>
+                    <li><a class="dropdown-item" href="{{ route('admin.departments.create') }}"><i
+                                class="bi bi-diagram-3"></i> New Department</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.services.create') }}"><i
+                                class="bi bi-heart-pulse"></i> New Service</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.doctors.create') }}"><i
+                                class="bi bi-person-plus"></i> New Doctor</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.faqs.create') }}"><i
+                                class="bi bi-question-circle"></i> New FAQ</a></li>
+                </ul>
+            </div>
+        @endif
     </div>
 
     <div class="navbar-search-wrapper">

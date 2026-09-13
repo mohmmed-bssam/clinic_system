@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\AppointmentBookingController;
+use App\Http\Controllers\Doctor\DoctorDashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +21,17 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/doctor/dashboard', DoctorDashboardController::class)
+    ->middleware(['auth', 'verified', 'doctor'])
+    ->name('doctor.dashboard');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/appointments/create', [AppointmentBookingController::class, 'create'])
+        ->name('appointments.create');
+    Route::post('/appointments', [AppointmentBookingController::class, 'store'])
+        ->name('appointments.store');
+});
 
 Route::prefix('admin')
     ->name('admin.')
@@ -31,7 +44,7 @@ Route::prefix('admin')
         Route::resource('services', ServiceController::class);
         Route::resource('doctors', DoctorController::class);
         Route::resource('appointments', AppointmentController::class)
-            ->only(['index', 'show', 'update']);
+            ->only(['index', 'create', 'store', 'show', 'update']);
         Route::resource('testimonials', TestimonialController::class);
         Route::resource('faqs', FaqController::class);
         Route::resource('messages', MessageController::class)
@@ -46,4 +59,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

@@ -2,7 +2,12 @@
     @include('admin.partials.page-header', [
         'title' => 'Appointments',
         'subtitle' => 'Review and update patient appointments.',
-    ])<div class="card">
+    ])
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{{ route('admin.appointments.create') }}" class="btn btn-primary"><i class="bi bi-calendar-plus"></i> New
+            appointment</a>
+    </div>
+    <div class="card">
         <div class="table-responsive">
             <table class="table align-middle mb-0">
                 <thead>
@@ -35,4 +40,5 @@
             </table>
         </div>
         <div class="p-3">{{ $appointments->links() }}</div>
-    </div></x-admin-layout>
+    </div>
+</x-admin-layout>

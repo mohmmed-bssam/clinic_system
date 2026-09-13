@@ -11,11 +11,30 @@
             <dt class="col-sm-3">Date</dt>
             <dd class="col-sm-9">{{ $appointment->appointment_at->format('M d, Y H:i') }}</dd>
         </dl>
+        @if ($appointment->status === 'pending')
+            <div class="d-flex gap-2 mb-4">
+                <form method="POST" action="{{ route('admin.appointments.update', $appointment) }}">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="status" value="confirmed">
+                    <input type="hidden" name="notes" value="{{ $appointment->notes }}">
+                    <button class="btn btn-success"><i class="bi bi-check-lg"></i> Accept request</button>
+                </form>
+                <form method="POST" action="{{ route('admin.appointments.update', $appointment) }}">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="status" value="cancelled">
+                    <input type="hidden" name="notes" value="{{ $appointment->notes }}">
+                    <button class="btn btn-outline-danger"><i class="bi bi-x-lg"></i> Reject request</button>
+                </form>
+            </div>
+        @endif
         <form method="POST" action="{{ route('admin.appointments.update', $appointment) }}" class="row g-3">@csrf
             @method('PUT')<div class="col-md-6"><label class="form-label">Status</label><select name="status"
                     class="form-select">
                     @foreach (['pending', 'confirmed', 'completed', 'cancelled'] as $status)
-                        <option value="{{ $status }}" @selected($appointment->status === $status)>{{ ucfirst($status) }}</option>
+                        <option value="{{ $status }}" @selected($appointment->status === $status)>{{ ucfirst($status) }}
+                        </option>
                     @endforeach
                 </select></div>
             <div class="col-12"><label class="form-label">Notes</label>
